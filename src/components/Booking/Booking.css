@@ -1,0 +1,28 @@
+
+.booking-container{
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-gap: 20px;
+}
+
+.booking-map img{
+    width: 100%;
+}
+
+.booking-form {
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.booking-form input {
+    border: none;
+    padding: 10px;
+}
+
+.booking-btn{
+    background-color: tomato;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
