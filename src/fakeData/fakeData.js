@@ -1,6 +1,6 @@
 
 import bike from '../images/bike.jpg';
-import car from '../images/car.png';
+import car from '../images/car.jpg';
 import bus from '../images/bus.jpg';
 import train from '../images/train.jpg';
 
