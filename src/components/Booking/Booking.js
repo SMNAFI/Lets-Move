@@ -3,13 +3,6 @@ import { useParams } from 'react-router';
 import map from '../../images/Map.png';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import './Booking.css';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
 import { data } from '../../fakeData/fakeData';
 
 
@@ -18,8 +11,7 @@ const Booking = () => {
     const [destination, setDestination] = useState({
         to: '',
         from: '',
-        date: '',
-        time: '',
+        dateTime: '',
         confirm: false
     })
     const handleBooking = event => {
@@ -33,10 +25,6 @@ const Booking = () => {
         newDestination[event.target.name] = event.target.value;
         setDestination(newDestination);
     }
-    const [selectedDate, setSelectedDate] = useState(new Date('2021-03-18T21:11:54'));
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
 
     return (
         <div className="booking-container">
@@ -59,7 +47,7 @@ const Booking = () => {
                                         <div>
                                             <h3>{element.name}</h3>
                                         </div>
-                                        <div >                                            
+                                        <div >
                                             <h3><PeopleAltIcon />{element.people}</h3>
                                         </div>
                                         <div>
@@ -72,35 +60,18 @@ const Booking = () => {
                     </div>
 
                     : <form onSubmit={handleBooking}>
-                        <p>Pick From</p>
-                        <input onBlur={handleChange} className="inputField" type="text" name="from" placeholder="Dhaka" required />
-                        <p>Pick to</p>
                         <div>
+                            <p>Pick From</p>
+                            <input onBlur={handleChange} className="inputField" type="text" name="from" placeholder="Dhaka" required />
+                        </div>
+                        <div>
+                            <p>Pick to</p>
                             <input onBlur={handleChange} className="inputField" type="text" name="to" placeholder="Mymensingh" required />
                         </div>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <KeyboardDatePicker
-                                margin="normal"
-                                id="date-picker-dialog"
-                                label="Select Travel Date"
-                                format="MM/dd/yyyy"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
-                            />
-                            <KeyboardTimePicker
-                                margin="normal"
-                                id="time-picker"
-                                label="Select Time"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change time',
-                                }}
-                            />
-                        </MuiPickersUtilsProvider>
+                        <div>
+                            <p>Travel Date and Time</p>
+                            <input onBlur={handleChange} type="datetime-local" className="inputField" name="dateTime"/>
+                        </div>
                         <div>
                             <input type="submit" value="Submit" className='booking-btn' />
                         </div>

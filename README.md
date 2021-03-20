@@ -1,6 +1,5 @@
 # LET'S MOVE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This is a simple react project. Google firebase is used for authentication system.
 User can log in using facebook, google and good old email with password.
 

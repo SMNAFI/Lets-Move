@@ -19,9 +19,7 @@ const Header = () => {
                     {
                         loggedInUser.name ?
                             <li><Link to='/' className='anchor user-name'>{loggedInUser.name}</Link></li>
-                            : <li><Link to='/login' className='anchor'>
-                                <span className='login-btn'>Login</span>
-                            </Link></li>
+                            : <li><Link to='/login' className='anchor login-btn'>Login </Link></li>
                     }
                 </ul>
             </div>
