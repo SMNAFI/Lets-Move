@@ -5,9 +5,9 @@ import './Home.css';
 
 const Home = () => {
     return (
-        <div className="body-container cards-container">
+        <div className="cards-container">
             {
-                data.map( d => <VehicleCard info={d} key={d.id} />)
+                data.map(dt => <VehicleCard info={dt} key={dt.id} />)
             }
         </div>
     );

@@ -22,21 +22,22 @@ const Login = () => {
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        error: ''
     });
 
     const googleSignIn = () => {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth()
             .signInWithPopup(googleProvider)
-            .then((result) => {
-                const { displayName, email } = result.user;
+            .then(res => {
+                const { displayName, email } = res.user;
                 const newUser = { name: displayName, email };
                 setLoggedInUser(newUser);
                 history.replace(from);
             }).catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                const errorCode = error.code;
+                const errorMessage = error.message;
                 console.log(errorCode, errorMessage);
             });
     }
@@ -45,15 +46,15 @@ const Login = () => {
         const fbProvider = new firebase.auth.FacebookAuthProvider();
         firebase.auth()
             .signInWithPopup(fbProvider)
-            .then((result) => {
-                var { displayName, email } = result.user;
+            .then(res => {
+                const { displayName, email } = res.user;
                 const newUser = { name: displayName, email };
                 setLoggedInUser(newUser);
                 history.replace(from);
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                const errorCode = error.code;
+                const errorMessage = error.message;
                 console.log(errorCode, errorMessage);
             });
     }
@@ -61,15 +62,15 @@ const Login = () => {
     const handleSubmit = event => {
         if (isNewUser && user.email && user.password && user.confirmPassword) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-                .then((userCredential) => {
+                .then(() => {
                     const newUser = { name: user.name, email: user.email };
                     setLoggedInUser(newUser);
                     history.replace(from);
                     updateUser(user.name);
                 })
-                .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
+                .catch(error => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
                     console.log(errorCode, errorMessage);
                 });
         }
@@ -80,11 +81,17 @@ const Login = () => {
                     const newUser = { name: displayName, email };
                     setLoggedInUser(newUser);
                     history.replace(from);
+                    const currentUser = { ...user };
+                    currentUser.error = '';
+                    setUser(currentUser);
                 })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.log(errorCode, errorMessage);
+                    const newUser = { ...user };
+                    newUser.error = errorMessage;
+                    setUser(newUser);
                 });
         }
         event.preventDefault();
@@ -92,7 +99,6 @@ const Login = () => {
 
     const updateUser = name => {
         const user = firebase.auth().currentUser;
-
         user.updateProfile({
             displayName: name
         }).then(function () {
@@ -113,20 +119,22 @@ const Login = () => {
         if (event.target.name === 'confirmPassword') {
             isFieldValid = event.target.value === user.password;
         }
+        if ((!isFieldValid && event.target.value.length) && (event.target.name === 'password' || event.target.name === 'confirmPassword')) {
+            const newUser = { ...user };
+            newUser.error = 'password invalid';
+            setUser(newUser);
+        }
         if (isFieldValid) {
             const newUser = { ...user };
             newUser[event.target.name] = event.target.value;
+            newUser.error = '';
             setUser(newUser);
-        }
-        else {
-            console.log(user);
-            console.log('incorrect ', event.target.name);
         }
     }
 
     return (
-        <div className="body-container" style={{ textAlign: 'center' }}>
-            <div>
+        <div className="login-container">
+            <div style={{ border: '1px solid gray', padding: '50px', borderRadius: '5px' }}>
                 <h1>{isNewUser ? 'Create an account' : 'Login'}</h1>
                 <form onSubmit={handleSubmit}>
                     {
@@ -147,6 +155,7 @@ const Login = () => {
                             <input onBlur={handleChange} type="password" name="confirmPassword" placeholder="Confirm Password" className="form-input" required />
                         </div>
                     }
+                    <p style={{ color: 'red' }}>{user.error}</p>
                     <input type="submit" value={isNewUser ? 'Create an account' : 'Login'} className="form-btn" />
                 </form>
                 <div style={{ textAlign: 'center' }}>
@@ -156,13 +165,13 @@ const Login = () => {
                         </span>
                     </p>
                 </div>
-                <p>or</p>
-                <div style={{ marginBottom: '20px' }}>
-                    <button className='login-btn' onClick={googleSignIn}>Google</button>
-                </div>
-                <div>
-                    <button className='login-btn' onClick={fbSignIn}>Facebook</button>
-                </div>
+            </div>
+            <p>or</p>
+            <div style={{ marginBottom: '20px' }}>
+                <button className='loginBtn' onClick={googleSignIn}>Continue with Google</button>
+            </div>
+            <div>
+                <button className='loginBtn' onClick={fbSignIn}>Continue with Facebook</button>
             </div>
         </div>
     );

@@ -1,28 +1,65 @@
 
 .booking-container{
     display: grid;
-    grid-template-columns: 2fr 4fr;
+    grid-template-columns: 5fr 7fr;
     grid-gap: 20px;
+}
+
+.booking-form {
+    background-color: #474B4F;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.booking-location{
+    background-color: #86C232;
+    color: #F7F9FE;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.inputField{
+    width: 95%;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.booking-btn{
+    background-color: #86C232;
+    border: none;
+    color: #F7F9FE;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .booking-map img{
     width: 100%;
 }
 
-.booking-form {
+.booking-confirm{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-evenly;
+    justify-items: center;
+    align-items: center;
     background-color: lightgray;
-    padding: 20px;
-}
-
-.booking-form input {
-    border: none;
+    color: black;
     padding: 10px;
+    border-radius: 5px;
 }
 
-.booking-btn{
-    background-color: tomato;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 20px;
+.booking-confirm img{
+    width: 100%;
+    border-radius: 3px;
+}
+
+@media (max-width: 688px) {
+    .booking-container{
+        grid-template-columns: 1fr;
+    }
 }
