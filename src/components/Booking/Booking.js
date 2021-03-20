@@ -70,7 +70,7 @@ const Booking = () => {
                         </div>
                         <div>
                             <p>Travel Date and Time</p>
-                            <input onBlur={handleChange} type="datetime-local" className="inputField" name="dateTime"/>
+                            <input onBlur={handleChange} type="datetime-local" className="inputField" name="dateTime" required />
                         </div>
                         <div>
                             <input type="submit" value="Submit" className='booking-btn' />
