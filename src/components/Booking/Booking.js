@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Booking.css';
 import { data } from '../../fakeData/fakeData';
 import GoogleMap from '../GoogleMap/GoogleMap';
-import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import Result from '../Result/Result';
 
 
