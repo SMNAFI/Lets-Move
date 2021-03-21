@@ -67,11 +67,17 @@ const Login = () => {
                     setLoggedInUser(newUser);
                     history.replace(from);
                     updateUser(user.name);
+                    const currentUser = { ...user };
+                    currentUser.error = '';
+                    setUser(currentUser);
                 })
                 .catch(error => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     console.log(errorCode, errorMessage);
+                    const newUser = { ...user };
+                    newUser.error = errorMessage;
+                    setUser(newUser);
                 });
         }
         if (!isNewUser && user.email && user.password) {

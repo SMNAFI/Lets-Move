@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import map from '../../images/Map.png';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Booking.css';
 import { data } from '../../fakeData/fakeData';
+import GoogleMap from '../GoogleMap/GoogleMap';
+import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import Result from '../Result/Result';
 
 
 const Booking = () => {
@@ -40,19 +42,10 @@ const Booking = () => {
                             data.map(element => {
                                 return (
                                     Object.values(element)[2] === type &&
-                                    <div className="booking-confirm">
-                                        <div>
-                                            <img src={element.image} alt="" />
-                                        </div>
-                                        <div>
-                                            <h3>{element.name}</h3>
-                                        </div>
-                                        <div >
-                                            <h3><PeopleAltIcon />{element.people}</h3>
-                                        </div>
-                                        <div>
-                                            <h3>{element.price}</h3>
-                                        </div>
+                                    <div>
+                                        <Result element={element}></Result>
+                                        <Result element={element}></Result>
+                                        <Result element={element}></Result>
                                     </div>
                                 )
                             })}
@@ -78,9 +71,7 @@ const Booking = () => {
                     </form>
                 }
             </div>
-            <div className="booking-map">
-                <img src={map} alt="" />
-            </div>
+            <GoogleMap></GoogleMap>
         </div>
     );
 };

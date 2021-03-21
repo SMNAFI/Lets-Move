@@ -1,0 +1,17 @@
+.booking-confirm{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-evenly;
+    justify-items: center;
+    align-items: center;
+    background-color: lightgray;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.booking-confirm img{
+    width: 100%;
+    border-radius: 3px;
+}
