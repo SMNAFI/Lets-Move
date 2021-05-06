@@ -1,9 +1,18 @@
 # LET'S MOVE
 
-This is a simple (demo) react project to find ride easily. Google firebase is used for authentication system.
-User can log in using facebook, google and email with password. There is also a google map but needs to improve.
+Let's Move is a responsive, frontend only web app created using create-react-app.
 
-## Live on firebase
+## Features
+
+- Users can choose vehicles like buses, trains, or bikes.
+- Authentication system with email, google, or creating a new account.
+- Users can set destination, ride time, and date.
+- Google map is used to visualize destinations.
+
+
+## Deployment
+
+> Firebase
 
 You can see live [here](https://auth-assignment9.web.app/)
 
